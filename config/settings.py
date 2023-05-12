@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # third party apps
     'rest_framework',
     'drf_yasg',
+    "django_filters",
 
     # my apps
     'client',
@@ -76,6 +77,13 @@ TEMPLATES = [
         },
     },
 ]
+
+REST_FRAMEWORK = {
+    "DEFAULT_FILTER_BACKENDS": [
+        "django_filters.rest_framework.DjangoFilterBackend"
+    ],
+}
+
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
