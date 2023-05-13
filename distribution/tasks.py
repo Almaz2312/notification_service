@@ -13,7 +13,11 @@ def send_message(distribution_model):
                                                 code=distribution_model.get("operator_filter"))
 
     for user in user_clients:
-        send_sms(distribution_model, user)
-        create_message_model(distribution_model, user)
-        distribution_model.ending_datetime = datetime.datetime.now()
-        distribution_model.save()
+        message = create_message_model(distribution_model, user)
+        response = send_sms(distribution_model, user, message)
+
+        if response.status_code == 200:
+            distribution_model.ending_datetime = datetime.datetime.now()
+            distribution_model.save()
+            message.status = True
+            message.save()

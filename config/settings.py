@@ -153,3 +153,5 @@ TWILIO_HTTP_PROXY = config('TWILIO_HTTP_PROXY')
 # Celery settings
 CELERY_BROKER_URL = "redis://redis:6379"
 CELERY_RESULT_BACKEND = "redis://redis:6379"
+
+AUTHORIZATION = config("AUTHORIZATION")
