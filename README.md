@@ -81,7 +81,7 @@ python manage.py migrate
 python manage.py createsuperuser
 ```
 
-Потом запустить приложение django, celery и redis
+Потом запустить приложение django, celery и redis паралельно
 
 ```commandline
 redis-server
