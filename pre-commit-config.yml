@@ -1,0 +1,42 @@
+fail_fast: true
+repos:
+  - repo: https://github.com/psf/black
+    rev: 23.3.0
+    hooks:
+      - id: black
+        additional_dependencies: ["click==8.0.4"]
+        language_version: python3.10
+        args: ["--line-length=79"]
+        exculde: ^.*\b(migrations)\b.*$
+
+  - repo: https://github.com/charliermarsh/ruff-pre-commit
+    rev: "v0.0.267"
+    hooks:
+      - id: ruff
+        args: ["--line-length=92"]
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: "v1.3.0"
+    hooks:
+    - id: mypy
+      args: [--no-strict-optional, --ignore-missing-imports]
+      exclude: "[a-zA-Z]*/(migrations)/(.)*"
+      additional_dependencies: [
+      # mypydependencies
+      djangorestframework-stubs,
+      django-stubs,
+      #runtime dependencies
+      django-environ,
+      psycopg2,
+      djangorestframework,
+      drf-yasg,
+      celery,
+      python-decouple,
+      django-filter
+      ]
+
+  - repo: https://github.com/timothycrosley/isort
+    rev: 5.12.0
+    hooks:
+      - id: sort
+        args: ["--profile", "black", "--line-length=79"]

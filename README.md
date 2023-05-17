@@ -1,6 +1,11 @@
 # notification service
 
 
+### Выполненно
+- [x] Dockerfile, docker-compse
+- [x] swagger
+
+
 ## Get started
 
 
@@ -89,3 +94,4 @@ python -m celery -A config worker -l info
 python manage.py runserver
 ```
 
+### 

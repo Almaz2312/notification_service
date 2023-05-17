@@ -6,7 +6,7 @@ from distribution.tasks import send_message
 
 
 class DistributionListCreateView(generics.ListCreateAPIView):
-    queryset = Distribute
+    queryset = Distribute.objects.all()
     serializer_class = DistributeSerializer
 
     def perform_create(self, serializer):
@@ -16,7 +16,7 @@ class DistributionListCreateView(generics.ListCreateAPIView):
 
 
 class DistributionDetailUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Distribute
+    queryset = Distribute.objects.all()
     serializer_class = DistributeSerializer
 
     def perform_update(self, serializer):

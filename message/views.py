@@ -6,7 +6,7 @@ from message.serializers import MessageSerializer
 
 
 class MessageListView(generics.ListAPIView):
-    queryset = Message
+    queryset = Message.objects.all()
     serializer_class = MessageSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ["distribution", "status"]

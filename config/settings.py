@@ -148,7 +148,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 TWILIO_SID = config('TWILIO_SID')
 TWILIO_AUTH_TOKEN = config('TWILIO_AUTH_TOKEN')
 TWILIO_PHONE_NUMBER = config('TWILIO_PHONE_NUMBER')
-TWILIO_HTTP_PROXY = config('TWILIO_HTTP_PROXY')
 
 # Celery settings
 CELERY_BROKER_URL = "redis://redis:6379"

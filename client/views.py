@@ -5,20 +5,20 @@ from client.serializers import OperatorSerializer, ClientSerializer
 
 
 class OperatorListCreateView(generics.ListCreateAPIView):
-    queryset = Operator
+    queryset = Operator.objects.all()
     serializer_class = OperatorSerializer
 
 
 class OperatorDetailDeleteView(generics.RetrieveDestroyAPIView):
-    queryset = Operator
+    queryset = Operator.objects.all()
     serializer_class = OperatorSerializer
 
 
 class ClientListCreateView(generics.ListCreateAPIView):
-    queryset = Client
+    queryset = Client.objects.all()
     serializer_class = ClientSerializer
 
 
 class ClientDetailUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Client
+    queryset = Client.objects.all()
     serializer_class = ClientSerializer
