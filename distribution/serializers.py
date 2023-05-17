@@ -16,7 +16,6 @@ class DistributeSerializer(serializers.ModelSerializer):
         exclude = ('ending_datetime',)
 
     def validate(self, attrs):
-        print(attrs)
         if datetime.now(tz=zoneinfo.ZoneInfo(key='UTC')) > attrs.get('sending_datetime'):
             raise ValidationError('Sending time can not be earlier than current time')
 

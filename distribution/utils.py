@@ -27,17 +27,17 @@ def send_sms(distribution_model, user, message):
     headers = {
         "Authorization": settings.AUTHORIZATION
     }
-    data = {"id": distribution_model.get("id"),
-            "phone": user.get("phone_number"),
-            "text": distribution_model.get("text")}
+    data = {"id": distribution_model["id"],
+            "phone": user["phone_number"],
+            "text": distribution_model["text"]}
 
     response = requests.post(endpoint, json=data, headers=headers)
     return response
 
 
 def create_message_model(distribution_model, user):
-    message = Message(created_datetime=distribution_model.get("sending_datetime"),
-                      distribution=distribution_model.get("id"),
+    message = Message(created_datetime=distribution_model["sending_datetime"],
+                      distribution=distribution_model["id"],
                       client=user.id)
     message.save()
     return message

@@ -7,10 +7,14 @@ from distribution.utils import send_sms, create_message_model
 
 
 # Time limit is set to 1 hour
-@shared_task(time_limit=10)
-def send_message(distribution_model):
-    user_clients = models.Client.objects.filter(tag=distribution_model.get("tag_filter"),
-                                                code=distribution_model.get("operator_filter"))
+@shared_task(time_limit=3600)
+def send_message(distribution_list):
+    distribution_model = distribution_list[0]
+    user_clients = models.Client.objects.filter(tag=distribution_model["tag_filter"],
+                                                code=distribution_model["operator_filter"])
+
+    if not user_clients:
+        return None
 
     for user in user_clients:
         message = create_message_model(distribution_model, user)
