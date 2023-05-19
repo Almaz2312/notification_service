@@ -12,7 +12,8 @@ class DistributionListCreateView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         instance = serializer.save()
         data = serializer.data
-        send_message([data])
+        eta = data["sending_datetime"]
+        send_message.apply_async([data], eta=eta)
         return instance
 
 
