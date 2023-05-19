@@ -21,7 +21,5 @@ def send_message(distribution_list):
         response = send_sms(distribution_model, user, message)
 
         if response.status_code == 200:
-            distribution_model.ending_datetime = timezone.datetime.now()
-            distribution_model.save()
             message.status = True
             message.save()
