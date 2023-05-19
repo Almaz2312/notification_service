@@ -1,5 +1,4 @@
-import zoneinfo
-from datetime import datetime
+from django.utils import timezone
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
@@ -16,7 +15,11 @@ class DistributeSerializer(serializers.ModelSerializer):
         exclude = ('ending_datetime',)
 
     def validate(self, attrs):
-        if datetime.now(tz=zoneinfo.ZoneInfo(key='UTC')) > attrs.get('sending_datetime'):
+        sending_datetime = attrs.get("sending_datetime")
+        if sending_datetime is None:
+            sending_datetime = self.instance.sending_datetime
+
+        if timezone.now() > sending_datetime:
             raise ValidationError('Sending time can not be earlier than current time')
 
         return super().validate(attrs)

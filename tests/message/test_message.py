@@ -15,4 +15,4 @@ class TestMessageView:
         response = api_client.get(reverse_lazy("message"))
 
         assert response.status_code == status.HTTP_200_OK
-        assert len(response.json()) == Message.objects.all().conut()
+        assert len(response.json()) == Message.objects.all().count()

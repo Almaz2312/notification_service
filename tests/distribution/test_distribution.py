@@ -23,7 +23,7 @@ class TestDistributeView:
     def test_create_view(self, api_client):
         tag = TagFactory.create()
         operator = OperatorFactory.create()
-        data = {"sending_datetime": datetime.datetime.now(), "text": faker.Faker("text"),
+        data = {"sending_datetime": datetime.datetime.now(), "text": faker.Faker().text(),
                 "operator_filter": operator.id, "tag_filter": tag.id,
                 "ending_datetime": datetime.date.today() + datetime.timedelta(days=1)}
         response = api_client.post(reverse_lazy("distribution"), data=data)
@@ -40,7 +40,7 @@ class TestDistributeView:
 
     def test_update_view(self, api_client):
         distribution = DistributeFactory.create()
-        data = {"text": faker.Faker("text")}
+        data = {"text": faker.Faker().text()}
         response = api_client.patch(
             reverse_lazy(
                 "distribution_detail", kwargs={"pk": distribution.id}
@@ -48,7 +48,7 @@ class TestDistributeView:
             data=data, follow=True
         )
 
-        assert response.status_code == status.HTTP_202_ACCEPTED
+        assert response.status_code == status.HTTP_200_OK
         assert response.json()["text"] == data["text"]
 
     def test_delete_view(self, api_client):

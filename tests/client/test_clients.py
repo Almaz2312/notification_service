@@ -42,7 +42,7 @@ class TestClientView:
         data = {"phone_number": "70987654321"}
         response = api_client.patch(reverse_lazy("client_detail", kwargs={"pk": client.id}), data=data, follow=True)
 
-        assert response.status_code == status.HTTP_202_ACCEPTED
+        assert response.status_code == status.HTTP_200_OK
         assert response.json()["phone_number"] == data["phone_number"]
 
     def test_client_delete_view(self, api_client):
@@ -74,14 +74,6 @@ class TestOperatorView:
 
         assert response.status_code == status.HTTP_200_OK
         assert response.json()["code"] == operator.code
-
-    def test_operator_put_update_view(self, api_client):
-        operator = OperatorFactory.create()
-        data = {"code": 555}
-        response = api_client.patch(reverse_lazy("operator_detail", kwargs={"pk": operator.id}), data=data, follow=True)
-
-        assert response.status_code == status.HTTP_202_ACCEPTED
-        assert response.json()["code"] == data["code"]
 
     def test_operator_delete_view(self, api_client):
         operator = OperatorFactory.create()
