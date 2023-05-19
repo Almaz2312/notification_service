@@ -1,7 +1,6 @@
 from rest_framework import generics
 
 from distribution.models import Distribute
-from client.models import Client
 from distribution.serializers import DistributeSerializer
 from distribution.tasks import send_message
 
@@ -13,11 +12,6 @@ class DistributionListCreateView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         instance = serializer.save()
         data = serializer.data
-        check = Client.objects.filter(tag=None, code=None)
-        if not check:
-            print('Empty!!!')
-        print(check)
-        print(data)
         send_message([data])
         return instance
 
