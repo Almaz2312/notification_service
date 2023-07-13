@@ -40,9 +40,9 @@ cp .env.example .env
 
 ```commandline
 docker-compose build
-docker run --rm web python manage.py makemigrations
-docker run --rm web python manage.py migrate
-docker run --rm web python manage.py createsuperuser
+docker-compose run --rm web python manage.py makemigrations
+docker-compose run --rm web python manage.py migrate
+docker-compose run --rm web python manage.py createsuperuser
 ```
 
 Затем запустите проект через докер композ
